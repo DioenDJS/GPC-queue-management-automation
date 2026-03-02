@@ -33,8 +33,7 @@ class GcpApi:
             })
 
             response.raise_for_status()
-
-            return response.json
+            return response.json()
         except requests.exceptions.HTTPError as http_err:
             logger.error(f"HTTP error when pulling subscription messages {subscription}")
             if response.status_code == 401:
