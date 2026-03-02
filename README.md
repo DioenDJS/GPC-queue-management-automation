@@ -20,6 +20,10 @@ Neste fluxo, existem filas que apresentam erros recorrentes. Elas passam por uma
 
 Por fim, todas as mensagens são colocadas novamente no tópico de origem através de um endpoint publisher. Logo na sequência, o ackId das mensagens capturadas no início do fluxo é utilizado para deletá-las via rota acknowledge.
 
+## CREDENTIALS:
+### Export suas credenciais do arquivo json com as permissões do IAM
+ * export GOOGLE_APPLICATION_CREDENTIALS="credentials.json"
+
 ## Como executar :gear:
 
 > python3 main.py
