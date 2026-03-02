@@ -10,6 +10,10 @@
 
 - [Python](https://docs.python.org/3/) <img align="center" alt="img_React" height="40" width="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" style="max-width:100%;" />
 
+- [Slack](https://pypi.org/project/slack-sdk/) <img align="center" alt="img_React" height="40" width="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/slack/slack-original.svg" style="max-width:100%;" />
+
+- [Cloud Run](https://docs.cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions) <img align="center" alt="img_React" height="40" width="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudrun/cloudrun-original.svg" style="max-width:100%;" />
+
 
 ## Projeto :computer:
 Este projeto implementa uma automação que trata mensagens em filas DLQs (Dead Letter Queues) no Google Cloud.
