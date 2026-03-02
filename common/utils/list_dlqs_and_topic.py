@@ -23,5 +23,5 @@ def get_list_dlqs_and_topic():
         {
             "subscription": "subscription-reporting-reported-posts-resolved-dlq",
             "topic": "date-me-topic-reporting-reported-comments-queue",
-        }
+        },
     ]
