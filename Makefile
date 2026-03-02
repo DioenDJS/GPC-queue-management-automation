@@ -11,3 +11,7 @@ install:
 
 run:
 	$(PYTHON) main.py
+
+format:
+	ruff check --select I --fix
+	ruff format

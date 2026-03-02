@@ -1,13 +1,27 @@
-from helpers.api_google_cloud import GcpApi
+import logging
+
+from common.utils.format_message import formatting
 from common.utils.list_dlqs_and_topic import get_list_dlqs_and_topic
+from helpers.api_google_cloud import GcpApi
+from helpers.slack_channel_message import SlackChannelMessage
+
+logger = logging.getLogger(__name__)
 
 pubsub_api = GcpApi()
+slack_service = SlackChannelMessage()
+
 
 def process():
     list_dlqs_and_topic = get_list_dlqs_and_topic()
+    list_dlq_and_topic_with_msgs = []
 
     for item in list_dlqs_and_topic:
+        logger.info(f"running the subscription {item['subscription']}")
         response = pubsub_api.pubsub_subscription_pull(item["subscription"])
-        print(response)
+        response["topic"] = item["topic"]
+        list_dlq_and_topic_with_msgs.append({item["subscription"]: response})
 
-    
+    list_dlq_and_topic_witch_msgs_decode = formatting(list_dlq_and_topic_with_msgs)
+
+    for msg in list_dlq_and_topic_witch_msgs_decode:
+        slack_service.send_to_message(msg)
