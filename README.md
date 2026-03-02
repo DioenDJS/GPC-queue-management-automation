@@ -32,3 +32,8 @@ Por fim, todas as mensagens são colocadas novamente no tópico de origem atrav�
 
 - ### APScheduler 3.11.2
 https://pypi.org/project/APScheduler/3.11.2/
+
+
+## Referencias Documentação:
+ ### pull_subscription:
+ https://docs.cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull?rep_location=global
