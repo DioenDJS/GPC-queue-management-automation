@@ -26,3 +26,4 @@ def process():
     for msg in list_dlq_and_topic_witch_msgs_decode:
         slack_service.send_to_message(msg)
         pubsub_api.pubsub_topics_publish(topic=msg["topic"], message=msg["data"])
+        pubsub_api.pubsub_subscription_acknowledge(subscription=msg["dlq"], ack_ids=[msg["ackId"]])

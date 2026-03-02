@@ -77,3 +77,33 @@ class GcpApi:
         except Exception as e:
             logger.exception(f"Unexpected error in PubSub Publish for {topic}")
             raise
+
+    def pubsub_subscription_acknowledge(self, subscription, ack_ids):
+        url = f"{self.base_url}subscriptions/{subscription}:acknowledge"
+
+        headers = {
+            "Authorization": f"Bearer {self._get_access_token()}",
+            "Content-Type": "application/json",
+        }
+
+        payload = {"ackIds": ack_ids}
+
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=15)
+            response.raise_for_status()
+            return response.json()
+
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f"HTTP error when acknowledging messages for {subscription}: {http_err}"
+            )
+            if response.status_code == 401:
+                logger.warning(
+                    "Tip: Check if your Google Cloud token has expired or is invalid."
+                )
+            return None
+        except Exception as e:
+            logger.exception(
+                f"Unexpected error in PubSub Acknowledge for {subscription}"
+            )
+            raise
