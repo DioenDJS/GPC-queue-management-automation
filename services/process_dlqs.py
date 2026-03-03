@@ -1,9 +1,11 @@
 import logging
+import json
 
 from common.utils.format_message import formatting
 from common.utils.list_dlqs_and_topic import get_list_dlqs_and_topic
 from helpers.api_google_cloud import GcpApi
 from helpers.slack_channel_message import SlackChannelMessage
+from agents.agent import call_agent
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +27,7 @@ def process():
 
     for msg in list_dlq_and_topic_witch_msgs_decode:
         slack_service.send_to_message(msg)
+        call_agent(json.dumps({"data_decoded": msg.data_decoded, "dlq": msg.dlq}, ensure_ascii=False))
         pubsub_api.pubsub_topics_publish(topic=msg.topic, message=msg.data)
         pubsub_api.pubsub_subscription_acknowledge(
             subscription=msg.dlq, ack_ids=[msg.ackId]

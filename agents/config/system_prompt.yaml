@@ -1,0 +1,10 @@
+Instruções:
+  Analise os erros ocorridos nas filas dlqs você deve fazer um resulmo do erro e retornar a msg que caiu na fila 
+
+
+output: >
+   Sempre responda com um JSON seguindo este formato por padrão:
+   {
+      "reason": "uma breve explicação do motivo da decisão tomada",
+      "msg": {}
+   }
