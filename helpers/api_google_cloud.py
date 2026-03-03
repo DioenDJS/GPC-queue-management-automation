@@ -107,3 +107,21 @@ class GcpApi:
                 f"Unexpected error in PubSub Acknowledge for {subscription}"
             )
             raise
+
+    def pubsub_entries_list(self, publish_time):
+        url = "https://logging.googleapis.com/v2/entries:list"
+
+        headers = {
+            "Authorization": f"Bearer {self._get_access_token()}",
+            "Content-Type": "application/json",
+        }
+
+        json = {
+            "resourceNames": [f"projects/{settings.project_id}"],
+            "filter": f'resource.type="cloud_run_revision" AND timestamp >= "{publish_time}"',
+            "orderBy": "timestamp desc",
+            "pageSize": 10,
+        }
+
+        response = requests.post(url, headers=headers, json=json)
+        return response.json()
