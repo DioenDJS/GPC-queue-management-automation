@@ -16,12 +16,10 @@ def formatting(msg):
                     topic=topic,
                     ackId=message.get("ackId"),
                     data=message.get("message", {}).get("data"),
-                    publish_time=message.get("message", {}).get(
-                        "publishTime"
-                    ),
+                    publish_time=message.get("message", {}).get("publishTime"),
                     data_decoded=decode_data(
                         message.get("message", {}).get("data", "")
-                    )
+                    ),
                 )
                 list_dlqs.append(content_dlq)
 
