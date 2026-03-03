@@ -17,8 +17,8 @@ class SlackChannelMessage:
     def send_to_message(self, msg_dlq, agent=False):
         try:
             if agent:
-                text = f"🚨 *Alerta de DLQ*: {msg_dlq.dlq} 🚨\n"
-                text += f"{getattr(msg_dlq, 'content', '')}\n"
+                text = f"🚨 *Alerta de DLQ*: {msg_dlq.get('dlq', '')} 🚨\n"
+                text += f"{msg_dlq.get('content', '')}\n"
             else:
                 text = f":clipboard: DLQ:{msg_dlq.dlq} \n:clock3: PublishTime:{msg_dlq.publish_time}\n\n"
                 text += f"{msg_dlq.data_decoded}\n"

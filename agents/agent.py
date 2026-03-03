@@ -1,12 +1,17 @@
+import json
 from pathlib import Path
 
 from langchain.agents import create_agent
+from langchain.tools import tool
 
 from agents.skills.user_data_processing_skill import user_data_processing_skill
 from agents.tools.mcp_postgres_tool import get_mcp_postgres_tool
 from helpers.llms import LLMProvider, Llms
+from helpers.slack_channel_message import SlackChannelMessage
 
 base_dir = Path(__file__).resolve().parent
+
+slack_api = SlackChannelMessage()
 
 agent_queue_one = create_agent(
     model=Llms(provider=LLMProvider.OLLAMA_GLM_5_CLOUD).get_llm(),
@@ -27,6 +32,7 @@ def call_analysis_queue_one_subagent_one(query: str):
 
 
 def call_agent(query: str):
+    query_dict = json.loads(query)
     main_agent = create_agent(
         model=Llms(provider=LLMProvider.OLLAMA_GLM_5_CLOUD).get_llm(),
         tools=[call_analysis_queue_one_subagent_one],
@@ -34,4 +40,8 @@ def call_agent(query: str):
     )
     result = main_agent.invoke({"messages": [{"role": "user", "content": query}]})
 
-    print(result)
+    msg = {
+        "content": result["messages"][-1].content,
+        "dlq": query_dict.get("dlq", ""),
+    }
+    slack_api.send_to_message(msg, agent=True)
