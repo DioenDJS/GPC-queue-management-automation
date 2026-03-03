@@ -3,6 +3,7 @@ from pathlib import Path
 from langchain.agents import create_agent
 
 from agents.skills.user_data_processing_skill import user_data_processing_skill
+from agents.tools.mcp_postgres_tool import get_mcp_postgres_tool
 from helpers.llms import LLMProvider, Llms
 
 base_dir = Path(__file__).resolve().parent
