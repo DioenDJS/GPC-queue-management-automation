@@ -7,3 +7,5 @@ ruff==0.15.4
 python-dotenv==1.2.1
 langchain==1.2.10
 langchain-ollama==1.0.1
+mcp==1.26.0
+ftfy==6.3.1
