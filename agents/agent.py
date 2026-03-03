@@ -6,11 +6,28 @@ from helpers.llms import LLMProvider, Llms
 
 base_dir = Path(__file__).resolve().parent
 
+agent_queue_one = create_agent(
+    model=Llms(provider=LLMProvider.OLLAMA_GLM_5_CLOUD).get_llm(),
+    name="agent_queue_one",
+    system_prompt=(base_dir / "config" / "agent_one.yaml").read_text(),
+    tools=[get_mcp_postgres_tool, user_data_processing_skill],
+)
+
+
+@tool(
+    "analysis_queue_one",
+    description="Subagente especializado em analisar mensagens de erro da "
+    "fila um (subscription-fila-um-dlq). Use para erros relacionados à fila um.",
+)
+def call_analysis_queue_one_subagent_one(query: str):
+    result = agent_queue_one.invoke({"messages": [{"role": "user", "content": query}]})
+    return result["messages"][-1].content
+
 
 def call_agent(query: str):
     main_agent = create_agent(
         model=Llms(provider=LLMProvider.OLLAMA_GLM_5_CLOUD).get_llm(),
-        tools=[],
+        tools=[call_analysis_queue_one_subagent_one],
         system_prompt=(base_dir / "config" / "system_prompt.yaml").read_text(),
     )
     result = main_agent.invoke({"messages": [{"role": "user", "content": query}]})
