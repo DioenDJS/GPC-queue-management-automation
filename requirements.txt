@@ -5,3 +5,5 @@ pydantic-settings==2.13.1
 slack-sdk==3.40.1
 ruff==0.15.4
 python-dotenv==1.2.1
+langchain==1.2.10
+langchain-ollama==1.0.1
