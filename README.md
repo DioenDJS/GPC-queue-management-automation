@@ -14,6 +14,9 @@
 
 - [Cloud Run](https://docs.cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions) <img align="center" alt="img_React" height="40" width="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudrun/cloudrun-original.svg" style="max-width:100%;" />
 
+- [Langchain](https://docs.langchain.com/oss/python/langchain/quickstart) <img align="center" alt="img_React" height="50" width="55" src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/langchain-color.png" style="max-width:100%;" />
+
+<img width="1309" height="864" alt="image" src="https://github.com/user-attachments/assets/90445425-b896-404a-8ef4-cf6c0a59bb00" />
 
 ## Projeto :computer:
 Este projeto implementa uma automação que trata mensagens em filas DLQs (Dead Letter Queues) no Google Cloud.
@@ -73,3 +76,19 @@ https://pypi.org/project/APScheduler/3.11.2/
 ## Referencias Documentação:
  ### pull_subscription:
  https://docs.cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull?rep_location=global
+
+ ### topic publish
+ https://docs.cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish?rep_location=global
+
+ ### multi-agent
+ https://docs.langchain.com/oss/python/langchain/multi-agent
+
+ ### langchain_ollama
+ https://docs.langchain.com/oss/python/integrations/llms/ollama# test_langchain_dlq
+
+ ### langchain_skills
+ https://docs.langchain.com/oss/python/langchain/multi-agent/skills
+
+### pg-mcp-server
+https://github.com/ericzakariasson/pg-mcp-server
+https://github.com/crystaldba/postgres-mcp
