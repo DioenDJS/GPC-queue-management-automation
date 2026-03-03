@@ -24,6 +24,38 @@ Neste fluxo, existem filas que apresentam erros recorrentes. Elas passam por uma
 
 Por fim, todas as mensagens são colocadas novamente no tópico de origem através de um endpoint publisher. Logo na sequência, o ackId das mensagens capturadas no início do fluxo é utilizado para deletá-las via rota acknowledge.
 
+### Estrutura do Projeto
+
+```
+app/
+├── agents/
+│   ├── config/
+│   │   ├── agent_four.yaml
+│   │   ├── agent_one.yaml
+│   │   └── system_prompt.yaml
+│   ├── skills/
+│   │   ├── user_data_processing_skill.py
+│   │   └── uuid_approved_processing_skill.py
+│   ├── tools/
+│   │   ├── mcp_postgres_tool.py
+│   │   └── postgres_tool.py
+│   └── agent.py
+├── common/
+│   ├── config/
+│   │   └── settings.py
+│   ├── utils/
+│   │   ├── format_message.py
+│   │   └── list_dlqs_and_topic.py
+│   └── schemas.py
+├── helpers/
+│   ├── api_google_cloud.py
+│   ├── llms.py
+│   └── slack_channel_message.py
+├── services/
+│   └── process_dlqs.py
+└── main.py
+```
+
 ## CREDENTIALS:
 ### Export suas credenciais do arquivo json com as permissões do IAM
  * export GOOGLE_APPLICATION_CREDENTIALS="credentials.json"
