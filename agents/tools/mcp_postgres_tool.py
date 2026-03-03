@@ -34,9 +34,7 @@ async def _run_postgres_query_async(query: str) -> str:
         async with ClientSession(read, write) as session:
             await session.initialize()
 
-            result = await session.call_tool(
-                "execute_sql", arguments={"query": query}
-            )
+            result = await session.call_tool("execute_sql", arguments={"query": query})
 
             output = []
             for item in result.content:
